@@ -123,7 +123,7 @@ html, body {
     height: 0.7rem;
     top: 50%;
     left: 0%;
-    transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
     background: #38EA93;
     z-index: 999;
 }
@@ -162,24 +162,33 @@ html, body {
 }
 
 .music-play-btn div{
-    
-}
-.music-play-btn .music-off {
     width: 2.6rem;
     height: 2.6rem;
     border: 2px solid #38EA93;
-    position: relative;
     border-radius: 50%;
+    position: relative;
+}
+.music-play-btn .music-off {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 2px solid #38EA93;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: none;
-    top: 8px;
 }
 .container___main .music-play-btn button svg {
     height: 3rem;
     width: 3rem;
     fill: none;
     stroke: #38EA93;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.music-play-btn .music-off::after {
+/* .music-play-btn .music-off::after {
     content: '';
     width: 0.8rem;
     height: 0.8rem;
@@ -188,7 +197,7 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+} */
 
 .music-play-btn .music-off::after {
     border-color: #9EAEF0;

@@ -153,6 +153,7 @@ body {
     transform: translate(-50%, -50%);
     background: #38EA93;
     z-index: 999;
+    /* transform-origin: left; */
 }
 
 .container___main .progree-player__count {
@@ -163,6 +164,7 @@ body {
     height: 100%;
     width: 0;
     border-radius: 12px;
+    /* transform-origin: left; */
 }
 
 #boxe-2 .progree-player__count {
@@ -251,6 +253,10 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.container___main .music-play-btn .play-pause-btn {
+    height: 4rem;
 }
 
 
