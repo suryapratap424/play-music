@@ -1,169 +1,193 @@
+function stopAllexcept(main) {
+  Array.from(document.getElementsByClassName("track")).forEach((e) => {
+    if(e!=main)
+    e.pause();
+  });
+  Array.from(document.getElementsByClassName("music-off")).forEach((e) => {
+      e.style.display = "none";
+  });
+  Array.from(document.getElementsByClassName("music-play")).forEach((e) => {
+      e.style.display = "block";
+  });
+}
+function audioPlayer(n) {
+  let playBtn = document.querySelector(`#music-play-${n}`);
+  let playAudio = document.querySelector(`#audio-play-${n}`);
+  let pauseBtn = document.querySelector(`#music-off-${n}`);
+  let playAudioMix = document.querySelector(`#audio-play-mix-${n}`);
+  let afterMusic = document.querySelector(`#boxe-${n} #after-btn-${n}`);
+  let beforeMusic = document.querySelector(`#boxe-${n} #before-btn-${n}`);
+  let progreesThumb = document.querySelector(
+    `#boxe-${n} .progree-player__thumb`
+  );
+  let progressCount = document.querySelector(
+    `#boxe-${n} .progree-player__count`
+  );
+  let progressBar = document.querySelector(`#boxe-${n} .progree-player`);
+  playBtn.addEventListener("click", () => {
+    if (document.querySelector(`#before-${n}`).checked) {
+      playAudio.play();
+      stopAllexcept(playAudio);
+      playBtn.style.display = "none"; // Hide the play button
+      pauseBtn.style.display = "block"; // Show the pause button
+    }
+    if (document.querySelector(`#after-${n}`).checked) {
+      playAudioMix.play();
+      stopAllexcept(playAudioMix);
+      playBtn.style.display = "none"; // Hide the play button
+      pauseBtn.style.display = "block"; // Show the pause button
+    }
+  });
+
+  pauseBtn.addEventListener("click", () => {
+    stopAllexcept()
+    if (!playAudio.paused) {
+      playAudio.pause();
+      pauseBtn.style.display = "none"; // Hide the pause button
+      playBtn.style.display = "block"; // Show the play button
+    }
+    if (!playAudioMix.paused) {
+      playAudioMix.pause();
+      pauseBtn.style.display = "none"; // Hide the pause button
+      playBtn.style.display = "block"; // Show the play button
+    }
+  });
+
+  playAudio.addEventListener("ended", () => {
+    playBtn.style.display = "block"; // Show the play button when audio ends
+    pauseBtn.style.display = "none"; // Hide the pause button when audio ends
+  });
+
+  playAudioMix.addEventListener("ended", () => {
+    playBtn.style.display = "block"; // Show the play button when audio ends
+    pauseBtn.style.display = "none"; // Hide the pause button when audio ends
+  });
+
+  beforeMusic.addEventListener("click", () => {
+    if (playAudio.paused) {
+      playAudio.currentTime = playAudioMix.currentTime;
+      playAudio.play();
+      stopAllexcept(playAudio);
+      playAudioMix.pause();
+      playBtn.style.display = "none"; // Hide the play button
+      pauseBtn.style.display = "block"; // Show the pause button
+    }
+  });
+
+  afterMusic.addEventListener("click", () => {
+    if (playAudioMix.paused) {
+      playAudioMix.currentTime = playAudio.currentTime;
+      playAudioMix.play();
+      stopAllexcept(playAudioMix);
+      playAudio.pause();
+      playBtn.style.display = "none"; // Hide the play button
+      pauseBtn.style.display = "block"; // Show the pause button
+    }
+  });
+
+  playAudio.addEventListener("timeupdate", () => {
+    const currentTime = playAudio.currentTime;
+    const duration = playAudio.duration;
+    const progress = (currentTime / duration) * 100;
+
+    // Update the width of the progress bar's thumb and count for playAudio
+    progreesThumb.style.left = `${progress}%`;
+    progressCount.style.width = `${progress}%`;
+    console.log(playAudio.currentTime, playAudioMix.currentTime);
+  });
+
+  playAudioMix.addEventListener("timeupdate", () => {
+    const currentTime = playAudioMix.currentTime;
+    const duration = playAudioMix.duration;
+    const progress = (currentTime / duration) * 100;
+
+    // Update the width of the progress bar's thumb and count for playAudioMix
+    progreesThumb.style.left = `${progress}%`;
+    progressCount.style.width = `${progress}%`;
+    console.log(playAudio.currentTime, playAudioMix.currentTime);
+  });
+
+  // progress bar seek
+  progressBar.addEventListener("click", (e) => {
+
+    const progressBarRect = progressBar.getBoundingClientRect();
+    const clickX = e.clientX - progressBarRect.left;
+    const progressBarWidth = progressBarRect.width;
+    const seekTime = (clickX / progressBarWidth) * playAudio.duration;
+
+    playAudio.currentTime = seekTime;
+    playAudioMix.currentTime = seekTime;
+  });
+}
 class BoxAudioPlayer {
   constructor(containerId) {
     this.container = document.getElementsByClassName(containerId)[0];
-    this.audioPlayers = [];
+    this.boxes = 0;
   }
 
-  addAudio(track1Src, track2Src) {
+  addAudio(track1Src, track2Src,heading,subtitle) {
+    let n = ++this.boxes;
     let div = document.createElement("div");
     div.classList.add("box");
-    div.innerHTML = `<div class="main___heading__box">
-        <div class="heading__art">Pop</div>
-        <div class="para">Marzena Mudrak - Memory</div>
+    div.id = `boxe-${n}`;
+    let color = "#38EA93";
+    let bg = "#38EA937d";
+    if (n % 3 == 2) {
+      color = "#9EAEF0";
+      bg = "#9EAEF07d";
+    }
+    if (n % 3 == 0) {
+      color = "#FF6666";
+      bg = "#FF66667d";
+    }
+    div.innerHTML = `
+    <style>
+      #before-${n}:checked+label{
+        background:${color};
+      }
+      #after-${n}:checked+label{
+        background:${color};
+      }
+      #music-off-${n}:after{
+        border:2px solid ${color}
+      }
+    </style>
+    <div class="main___heading__box">
+        <div class="heading__art">${heading}</div>
+        <div class="para">${subtitle}</div>
     </div>
-    <div class="before-after-btn">
-        <input type="radio" name="PlayerBtn" id="before" checked>
-        <label for="before" id="before-btn-1">
+    <div class="before-after-btn" style="border:2px solid ${color}">
+        <input type="radio" name="PlayerBtn-${n}" id="before-${n}" checked>
+        <label for="before-${n}" id="before-btn-${n}">
             <span>Before</span>
         </label>
-        <input type="radio" id="after" name="PlayerBtn">
-        <label for="after" id="after-btn-1">
+        <input type="radio" id="after-${n}" name="PlayerBtn-${n}">
+        <label for="after-${n}" id="after-btn-${n}">
             <span>After</span>
         </label>
     </div>
-    <div class="progress-bar">
-        <div class="progree-player">
-            <div class="progree-player__count"></div>
-            <div class="progree-player__thumb"></div>
+    <div class="progress-bar" style="border:2px solid ${color}">
+        <div class="progree-player" style="background:${bg};">
+            <div class="progree-player__count" style="background:${color}"></div>
+            <div class="progree-player__thumb" style="background:${color}"></div>
         </div>
     </div>
     <div class="music-play-btn">
-        <audio src="track1.mp3" id="audio-play-1"></audio>
-        <audio src="track2.mp3" id="audio-play-mix-1"></audio>
+        <audio src="${track1Src}" class="track" id="audio-play-${n}"></audio>
+        <audio src="${track2Src}" class="track" id="audio-play-mix-${n}"></audio>
         <div class="play-pause-btn">
-            <button type="button" id="music-play-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1"
+            <button type="button" id="music-play-${n}" class="music-play">
+            <svg style="stroke:${color}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
                 <circle cx="12" cy="12" r="10"></circle>
                 <polygon points="10 8 16 12 10 16 10 8"></polygon>
             </svg>
         </button>
-        <button type="button" id="music-off-1" class="music-off"></button>
+        <button style="border:2px solid ${color}" type="button" id="music-off-${n}" class="music-off"></button>
         </div>
         
     </div>`;
-    this.container.appendChild(div)
-  }
-  audioPlayer() {
-    let playBtn1 = document.querySelector("#music-play-1");
-    let playAudio1 = document.querySelector("#audio-play-1");
-    let pauseBtn1 = document.querySelector("#music-off-1");
-    let playAudioMix1 = document.querySelector("#audio-play-mix-1");
-    let afterMusic1 = document.querySelector("#boxe-1 #after-btn-1");
-    let beforeMusic1 = document.querySelector("#boxe-1 #before-btn-1");
-    let progreesThumb1 = document.querySelector(
-      "#boxe-1 .progree-player__thumb"
-    );
-    let progressCount1 = document.querySelector(
-      "#boxe-1 .progree-player__count"
-    );
-    let progressBar1 = document.querySelector("#boxe-1 .progree-player");
-
-    playBtn1.addEventListener("click", () => {
-      if (document.querySelector("#before").checked) {
-        playAudio1.play();
-        playBtn1.style.display = "none"; // Hide the play button
-        pauseBtn1.style.display = "block"; // Show the pause button
-      }
-      if (document.querySelector("#after").checked) {
-        playAudioMix1.play();
-        playBtn1.style.display = "none"; // Hide the play button
-        pauseBtn1.style.display = "block"; // Show the pause button
-      }
-    });
-
-    pauseBtn1.addEventListener("click", () => {
-      if (!playAudio1.paused) {
-        playAudio1.pause();
-        pauseBtn1.style.display = "none"; // Hide the pause button
-        playBtn1.style.display = "block"; // Show the play button
-      }
-      if (!playAudioMix1.paused) {
-        playAudioMix1.pause();
-        pauseBtn1.style.display = "none"; // Hide the pause button
-        playBtn1.style.display = "block"; // Show the play button
-      }
-    });
-
-    playAudio1.addEventListener("ended", () => {
-      playBtn1.style.display = "block"; // Show the play button when audio ends
-      pauseBtn1.style.display = "none"; // Hide the pause button when audio ends
-    });
-
-    playAudioMix1.addEventListener("ended", () => {
-      playBtn1.style.display = "block"; // Show the play button when audio ends
-      pauseBtn1.style.display = "none"; // Hide the pause button when audio ends
-    });
-
-    beforeMusic1.addEventListener("click", () => {
-      if (playAudio1.paused) {
-        playAudio1.currentTime = playAudioMix1.currentTime;
-        playAudio1.play();
-        playAudioMix1.pause();
-        playBtn1.style.display = "none"; // Hide the play button
-        pauseBtn1.style.display = "block"; // Show the pause button
-      }
-    });
-
-    afterMusic1.addEventListener("click", () => {
-      if (playAudioMix1.paused) {
-        playAudioMix1.currentTime = playAudio1.currentTime;
-        playAudioMix1.play();
-        playAudio1.pause();
-        playBtn1.style.display = "none"; // Hide the play button
-        pauseBtn1.style.display = "block"; // Show the pause button
-      }
-    });
-
-    // pauseBtn1.addEventListener("click", () => {
-    // if (!playAudioMix1.paused) {
-    //     playAudioMix1.pause();
-    //     pauseBtn1.style.display = "none"; // Hide the pause button
-    //     playBtn1.style.display = "block"; // Show the play button
-    // }
-    // });
-
-    playAudio1.addEventListener("timeupdate", () => {
-      const currentTime = playAudio1.currentTime;
-      const duration = playAudio1.duration;
-      const progress = (currentTime / duration) * 100;
-
-      // Update the width of the progress bar's thumb and count for playAudio1
-      progreesThumb1.style.left = `${progress}%`;
-      progressCount1.style.width = `${progress}%`;
-      console.log(playAudio1.currentTime, playAudioMix1.currentTime);
-    });
-
-    playAudioMix1.addEventListener("timeupdate", () => {
-      const currentTime = playAudioMix1.currentTime;
-      const duration = playAudioMix1.duration;
-      const progress = (currentTime / duration) * 100;
-
-      // Update the width of the progress bar's thumb and count for playAudioMix1
-      progreesThumb1.style.left = `${progress}%`;
-      progressCount1.style.width = `${progress}%`;
-      console.log(playAudio1.currentTime, playAudioMix1.currentTime);
-    });
-
-    // progress bar seek
-    progressBar1.addEventListener("click", (e) => {
-      const progressBarRect = progressBar1.getBoundingClientRect();
-      const clickX = e.clientX - progressBarRect.left;
-      const progressBarWidth = progressBarRect.width;
-      const seekTime1 = (clickX / progressBarWidth) * playAudio1.duration;
-
-      playAudio1.currentTime = seekTime1;
-      playAudioMix1.currentTime = seekTime1;
-    });
+    this.container.appendChild(div);
+    audioPlayer(n);
   }
 }
-const boxPlayer = new BoxAudioPlayer("container___main");
-
-// Example: Add audio tracks to the container
-boxPlayer.addAudio("track1.mp3", "track2.mp3");
-boxPlayer.addAudio("track3.mp3", "track4.mp3");
-boxPlayer.addAudio("track3.mp3", "track4.mp3");
-boxPlayer.addAudio("track3.mp3", "track4.mp3");
-boxPlayer.addAudio("track3.mp3", "track4.mp3");
-boxPlayer.addAudio("track3.mp3", "track4.mp3");
-boxPlayer.addAudio("track3.mp3", "track4.mp3");
