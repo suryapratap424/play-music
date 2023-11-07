@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section id="player____section">
+        <div class="container___main">
+            <div class="box" id="boxe-1">
+                <div class="main___heading__box">
+                    <div class="heading__art">Pop</div>
+                    <div class="para">Marzena Mudrak - Memory</div>
+                </div>
+                <div class="before-after-btn">
+                    <input type="radio" name="PlayerBtn" id="before" checked>
+                    <label for="before" id="before-btn-1">
+                        <span>Before</span>
+                    </label>
+                    <input type="radio" id="after" name="PlayerBtn">
+                    <label for="after" id="after-btn-1">
+                        <span>After</span>
+                    </label>
+                </div>
+                <div class="progress-bar">
+                    <div class="progree-player">
+                        <div class="progree-player__count"></div>
+                        <div class="progree-player__thumb"></div>
+                    </div>
+                </div>
+                <div class="music-play-btn">
+                    <audio src="track1.mp3" id="audio-play-1"></audio>
+                    <audio src="track2.mp3" id="audio-play-mix-1"></audio>
+                    <button type="button" id="music-play-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                    </button>
+                    <button type="button" id="music-off-1" class="music-off"></button>
+                </div>
+            </div>
+
+            <div class="box" id="boxe-2">
+                <div class="main___heading__box">
+                    <div class="heading__art">Pop</div>
+                    <div class="para">Marzena Mudrak - Memory</div>
+                </div>
+                <div class="before-after-btn light-blue">
+                    <input type="radio" name="PlayerBtn-2" id="before-2" checked>
+                    <label for="before-2" id="before-btn-2">
+                        <span>Before</span>
+                    </label>
+                    <input type="radio" id="after-2" name="PlayerBtn-2">
+                    <label for="after-2" id="after-btn-2">
+                        <span>After</span>
+                    </label>
+                </div>
+                <div class="progress-bar light-blue">
+                    <div class="progree-player">
+                        <div class="progree-player__count"></div>
+                        <div class="progree-player__thumb"></div>
+                    </div>
+                </div>
+                <div class="music-play-btn">
+                    <audio src="track1.mp3" id="audio-play-2"></audio>
+                    <audio src="track2.mp3" id="audio-play-mix-2"></audio>
+                    <button type="button" id="music-play-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                    </button>
+                    <button type="button" id="music-off-2" class="music-off"></button>
+                </div>
+            </div>
+
+            <div class="box" id="boxe-3">
+                <div class="main___heading__box">
+                    <div class="heading__art">Pop</div>
+                    <div class="para">Marzena Mudrak - Memory</div>
+                </div>
+                <div class="before-after-btn red">
+                    <input type="radio" name="PlayerBtn-3" id="before-3" checked>
+                    <label for="before-3" id="before-btn-3">
+                        <span>Before</span>
+                    </label>
+                    <input type="radio" id="after-3" name="PlayerBtn-3">
+                    <label for="after-3" id="after-btn-3">
+                        <span>After</span>
+                    </label>
+                </div>
+                <div class="progress-bar red">
+                    <div class="progree-player">
+                        <div class="progree-player__count"></div>
+                        <div class="progree-player__thumb"></div>
+                    </div>
+                </div>
+                <div class="music-play-btn">
+                    <audio src="track1.mp3" id="audio-play-3"></audio>
+                    <audio src="track2.mp3" id="audio-play-mix-3"></audio>
+                    <button type="button" id="music-play-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                    </button>
+                    <button type="button" id="music-off-3" class="music-off"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

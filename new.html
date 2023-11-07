@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="./css/new.css">
+</head>
+
+<body>
+    <section id="player____section">
+        <div class="container___main">
+            <div class="box">
+                <div class="main___heading__box">
+                    <div class="heading__art">Pop</div>
+                    <div class="para">Marzena Mudrak - Memory</div>
+                </div>
+                <div class="before-after-btn">
+                    <input type="radio" name="PlayerBtn" id="before" checked>
+                    <label for="before" id="before-btn-1">
+                        <span>Before</span>
+                    </label>
+                    <input type="radio" id="after" name="PlayerBtn">
+                    <label for="after" id="after-btn-1">
+                        <span>After</span>
+                    </label>
+                </div>
+                <div class="progress-bar">
+                    <div class="progree-player">
+                        <div class="progree-player__count"></div>
+                        <div class="progree-player__thumb"></div>
+                    </div>
+                </div>
+                <div class="music-play-btn">
+                    <audio></audio>
+                    <audio></audio>
+                    <div>
+                        <button type="button" class="music-play">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1"
+                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle">
+                                <!-- <circle cx="12" cy="12" r="10"></circle> -->
+                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                            </svg>
+                        </button>
+                        <button type="button" class="music-off"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/new.js"></script>
+</body>
+
+</html>
