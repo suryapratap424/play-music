@@ -7,7 +7,7 @@ function boxesAudioPlayer1() {
     let beforeMusic1 = document.querySelector("#boxe-1 #before-btn-1");
     let progreesThumb1 = document.querySelector("#boxe-1 .progree-player__thumb");
     let progressCount1 = document.querySelector("#boxe-1 .progree-player__count");
-    // const progressPlayers = document.querySelectorAll(".progree-player");
+    let progressBar1 = document.querySelector("#boxe-1 .progree-player");
 
     playBtn1.addEventListener("click", () => {
         if (playAudio1.paused) {
@@ -37,6 +37,7 @@ function boxesAudioPlayer1() {
 
     beforeMusic1.addEventListener("click", () => {
         if (playAudio1.paused) {
+            playAudio1.currentTime = playAudioMix1.currentTime;
             playAudio1.play();
             playAudioMix1.pause();
             playBtn1.style.display = "none"; // Hide the play button
@@ -46,6 +47,7 @@ function boxesAudioPlayer1() {
 
     afterMusic1.addEventListener("click", () => {
         if (playAudioMix1.paused) {
+            playAudioMix1.currentTime = playAudio1.currentTime;
             playAudioMix1.play();
             playAudio1.pause();
             playBtn1.style.display = "none"; // Hide the play button
@@ -64,29 +66,45 @@ function boxesAudioPlayer1() {
 
 
 
+
     playAudio1.addEventListener("timeupdate", () => {
         const currentTime = playAudio1.currentTime;
         const duration = playAudio1.duration;
         const progress = (currentTime / duration) * 100;
-        console.log(progress);
-        // Update the width of the progress bar's thumb
+
+        // Update the width of the progress bar's thumb and count for playAudio1
         progreesThumb1.style.left = `${progress}%`;
         progressCount1.style.width = `${progress}%`;
+        console.log(playAudio1.currentTime,playAudioMix1.currentTime);
 
     });
-
 
 
     playAudioMix1.addEventListener("timeupdate", () => {
         const currentTime = playAudioMix1.currentTime;
         const duration = playAudioMix1.duration;
         const progress = (currentTime / duration) * 100;
-        console.log(progress);
-        // Update the width of the progress bar's thumb
+
+        // Update the width of the progress bar's thumb and count for playAudioMix1
         progreesThumb1.style.left = `${progress}%`;
         progressCount1.style.width = `${progress}%`;
-
+        console.log(playAudio1.currentTime,playAudioMix1.currentTime);
     });
+
+    // progress bar seek 
+    progressBar1.addEventListener("click", (e) => {
+        const progressBarRect = progressBar1.getBoundingClientRect();
+        const clickX = e.clientX - progressBarRect.left;
+        const progressBarWidth = progressBarRect.width;
+        const seekTime1 = (clickX / progressBarWidth) * playAudio1.duration;
+    
+        // if (!playAudio1.paused) {
+            playAudio1.currentTime = seekTime1;
+        // } else {
+            playAudioMix1.currentTime = seekTime1;
+        // }
+    });
+    
 
 
 }
@@ -107,7 +125,7 @@ function boxesAudioPlayer2() {
     let beforeMusic2 = document.querySelector("#boxe-2 #before-btn-2");
     let progreesThumb2 = document.querySelector("#boxe-2 .progree-player__thumb");
     let progressCount2 = document.querySelector("#boxe-2 .progree-player__count");
-    // const progressPlayers2 = document.querySelectorAll(".progree-player");
+    let progressBar2 = document.querySelector("#boxe-2 .progree-player");
 
     playBtn2.addEventListener("click", () => {
         if (playAudio2.paused) {
@@ -152,7 +170,7 @@ function boxesAudioPlayer2() {
             pauseBtn2.style.display = "block"; // Show the pause button
         }
     });
-    
+
     pauseBtn2.addEventListener("click", () => {
         if (!playAudioMix2.paused) {
             playAudioMix2.pause();
@@ -171,7 +189,7 @@ function boxesAudioPlayer2() {
         progressCount2.style.width = `${progress2}%`;
 
     });
-    
+
 
 
     playAudioMix2.addEventListener("timeupdate", () => {
@@ -184,6 +202,22 @@ function boxesAudioPlayer2() {
         progressCount2.style.width = `${progress2}%`;
 
     });
+
+    // progress bar seek 
+    progressBar2.addEventListener("click", (e) => {
+        const progressBarRect = progressBar2.getBoundingClientRect();
+        const clickX = e.clientX - progressBarRect.left;
+        const progressBarWidth = progressBarRect.width;
+        const seekTime1 = (clickX / progressBarWidth) * playAudio2.duration;
+    
+        if (!playAudio2.paused) {
+            playAudio2.currentTime = seekTime1;
+        } else {
+            playAudioMix2.currentTime = seekTime1;
+        }
+    });
+    
+
 }
 
 boxesAudioPlayer2();
@@ -200,7 +234,7 @@ function boxesAudioPlayer3() {
     let beforeMusic3 = document.querySelector("#boxe-3 #before-btn-3");
     let progreesThumb3 = document.querySelector("#boxe-3 .progree-player__thumb");
     let progressCount3 = document.querySelector("#boxe-3 .progree-player__count");
-    // const progressPlayers3 = document.querySelectorAll(".progree-player");
+    let progressBar3 = document.querySelector("#boxe-3 .progree-player");
 
 
     playBtn3.addEventListener("click", () => {
@@ -247,7 +281,7 @@ function boxesAudioPlayer3() {
             pauseBtn3.style.display = "block"; // Show the pause button
         }
     });
-    
+
     pauseBtn3.addEventListener("click", () => {
         if (!playAudioMix3.paused) {
             playAudioMix3.pause();
@@ -278,6 +312,22 @@ function boxesAudioPlayer3() {
         progressCount3.style.width = `${progress3}%`;
 
     });
+
+        // progress bar seek 
+    progressBar3.addEventListener("click", (e) => {
+        const progressBarRect = progressBar3.getBoundingClientRect();
+        const clickX = e.clientX - progressBarRect.left;
+        const progressBarWidth = progressBarRect.width;
+        const seekTime1 = (clickX / progressBarWidth) * playAudio3.duration;
+    
+        if (!playAudio3.paused) {
+            playAudio3.currentTime = seekTime1;
+        } else {
+            playAudioMix3.currentTime = seekTime1;
+        }
+    });
+    
+    
 }
 
 boxesAudioPlayer3();
