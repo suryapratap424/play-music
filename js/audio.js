@@ -130,23 +130,25 @@ class BoxAudioPlayer {
     let div = document.createElement("div");
     div.classList.add("box");
     div.id = `boxe-${n}`;
-    let color = "#38EA93";
-    let bg = "#38EA937d";
-    if (n % 3 == 2) {
-      color = "#9EAEF0";
-      bg = "#9EAEF07d";
-    }
-    if (n % 3 == 0) {
-      color = "#FF6666";
-      bg = "#FF66667d";
-    }
+    let color = "#ffd601";
+    let bg = "#615203";
+    // if (n % 3 == 2) {
+    //   color = "#9EAEF0";
+    //   bg = "#9EAEF07d";
+    // }
+    // if (n % 3 == 0) {
+    //   color = "#FF6666";
+    //   bg = "#FF66667d";
+    // }
     div.innerHTML = `
     <style>
       #before-${n}:checked+label{
         background:${color};
+        color:black;
       }
       #after-${n}:checked+label{
         background:${color};
+        color:black;
       }
       #music-off-${n}:after{
         border:2px solid ${color}
@@ -158,11 +160,11 @@ class BoxAudioPlayer {
     </div>
     <div class="before-after-btn" style="border:2px solid ${color}">
         <input type="radio" name="PlayerBtn-${n}" id="before-${n}" checked>
-        <label for="before-${n}" id="before-btn-${n}">
+        <label onmousedown="return false" onselectstart="return false" for="before-${n}" id="before-btn-${n}">
             <span>Before</span>
         </label>
         <input type="radio" id="after-${n}" name="PlayerBtn-${n}">
-        <label for="after-${n}" id="after-btn-${n}">
+        <label onmousedown="return false" onselectstart="return false" for="after-${n}" id="after-btn-${n}">
             <span>After</span>
         </label>
     </div>

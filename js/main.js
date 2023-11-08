@@ -4,4 +4,3 @@ const boxPlayer = new BoxAudioPlayer("container___main");
 boxPlayer.addAudio("track1.mp3", "track2.mp3",'Pop','Marzena Mudrak - Memory');
 boxPlayer.addAudio("track1.mp3", "track2.mp3",'hii','something');
 boxPlayer.addAudio("track1.mp3", "track2.mp3",'add you heading','add your subtitle');
-boxPlayer.addAudio("track1.mp3", "track2.mp3",'hehehee','hahaha');
