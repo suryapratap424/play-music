@@ -10,8 +10,7 @@
 }
 
 .container___main {
-    /* width: 85%; */
-    /* margin: auto; */
+    height: fit-content;
     display: flex;
     justify-content: center;
     row-gap: 2rem;
