@@ -16,11 +16,25 @@
         atque impedit asperiores quasi excepturi velit, nostrum sapiente similique et recusandae cupiditate id?</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime culpa est velit? Aut molestias error quo eos
         atque impedit asperiores quasi excepturi velit, nostrum sapiente similique et recusandae cupiditate id?</p>
-        
-        <iframe src="./index.html" frameborder="0" scrolling="no"
+
+    <!-- <iframe src="./index.html" frameborder="0" scrolling="no"
         style="width: 100%;" 
-        onload="this.style.height = this.contentWindow.document.documentElement.scrollHeight + 'px';"></iframe>
-        <!-- <iframe src="https://suryapratap424.github.io/play-music/index.html" frameborder="0" scrolling="no" style="width: 100%;" onload="this.style.height = this.contentWindow.document.documentElement.scrollHeight + 'px';"></iframe> -->
+        onload="this.style.height = this.contentWindow.document.documentElement.scrollHeight + 'px';"></iframe> -->
+    <iframe src="https://suryapratap424.github.io/play-music/index.html" frameborder="0" scrolling="no"
+        style="width: 100%;"></iframe>
+    <script>
+        window.addEventListener('message', function (event) {
+            // Check the origin of the message to ensure security
+            // if (event.origin !== 'https://example.com') {
+            //     return;
+            // }
+                console.log('yes');
+            // Adjust the iframe height based on the received message
+            var height = event.data.height;
+            document.getElementById('yourIframeId').style.height = height + 'px';
+        });
+        // setInterval((this) => { e.style.height = this.contentWindow.document.documentElement.scrollHeight + 'px'; console.log('yes') }, 1000)
+    </script>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime culpa est velit? Aut molestias error quo eos
         atque impedit asperiores quasi excepturi velit, nostrum sapiente similique et recusandae cupiditate id?</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime culpa est velit? Aut molestias error quo eos
