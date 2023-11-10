@@ -16,6 +16,9 @@
     <script src="js/main.js"></script>
     <script>
         window.parent.postMessage({ height: document.body.scrollHeight }, '*');
+        window.addEventListener("resize",()=>{
+            window.parent.postMessage({ height: document.body.scrollHeight }, '*');
+        })
     </script>
 </body>
 
