@@ -1,0 +1,13 @@
+<iframe src="https://suryapratap424.github.io/play-music/index.html" frameborder="0" scrolling="no"
+    style="width: 100%;" id="myFrame"></iframe>
+<script>
+    function adjustIframeHeight() {            var newHeight = document.body.scrollHeight;
+        document.getElementById('myFrame').style.height = newHeight + 'px';
+    }
+    window.addEventListener('message', function (event) {
+        var height = event.data.height;
+        document.getElementById('myFrame').style.height = height + 'px';
+    });
+    window.addEventListener('resize', adjustIframeHeight);
+    window.addEventListener('load', adjustIframeHeight);
+</script>
