@@ -161,11 +161,11 @@ class BoxAudioPlayer {
     <div class="before-after-btn" style="border:2px solid ${color}">
         <input type="radio" name="PlayerBtn-${n}" id="before-${n}" checked>
         <label onmousedown="return false" onselectstart="return false" for="before-${n}" id="before-btn-${n}">
-            <span>Before</span>
+            <span>Przed</span>
         </label>
         <input type="radio" id="after-${n}" name="PlayerBtn-${n}">
         <label onmousedown="return false" onselectstart="return false" for="after-${n}" id="after-btn-${n}">
-            <span>After</span>
+            <span>Po</span>
         </label>
     </div>
     <div class="progress-bar" style="border:2px solid ${color}">
