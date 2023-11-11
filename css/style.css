@@ -18,9 +18,9 @@
 }
 
 .container___main .box {
-    padding: 1.5rem 4rem;
-    min-width: 377px;
-    width: 377px;
+    padding: 1.5rem 3rem;
+    max-width: 350px;
+    width: 100%;
     background: #351e59;
     border-radius: 50px;
 }
